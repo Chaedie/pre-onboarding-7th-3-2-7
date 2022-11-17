@@ -11,7 +11,6 @@ function LoginForm() {
     setInputs({ ...inputs, [name]: value });
   };
 
-  const [loginError, setLoginError] = useState(false);
   const handleOnSubmitLogin = (e: FormEvent) => {
     e.preventDefault();
     postLogin(inputs);
@@ -48,7 +47,6 @@ function LoginForm() {
           placeholder="아이디를 입력하세요"
           autoComplete="current-password"
         />
-        {loginError && <span className="text-red">Error</span>}
         <input
           className="my-1 border bg-gray-100"
           type="submit"

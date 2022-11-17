@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { PAGINATION_LIMIT } from '../utils/varibales';
 
 const http = axios.create({
   // baseURL: 'http://localhost:4000/api',
@@ -50,7 +51,7 @@ export const getAccounts = async (page: number) => {
     const res = await http.get(url, {
       params: {
         _page: page,
-        _limit: 20,
+        _limit: PAGINATION_LIMIT,
       },
     });
     return res;
