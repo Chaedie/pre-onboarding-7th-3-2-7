@@ -1,12 +1,10 @@
-import Head from 'next/head';
-import Image from 'next/image';
-import styles from '../styles/Home.module.css';
+import LoginForm from '../src/components/LoginForm';
 
 export default function Home() {
   return (
-    <div>
-      Hello next.js
-      <h1 className="text-3xl font-bold underline">Tail Wind!!!</h1>
+    <div className="h-screen bg-gray-100 flex flex-col justify-center items-center overflow-auto">
+      <h1 className="text-5xl mb-10 text-blue-900 font-bold">LOGO</h1>
+      <LoginForm />
     </div>
   );
 }
