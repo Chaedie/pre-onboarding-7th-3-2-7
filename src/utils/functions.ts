@@ -25,3 +25,17 @@ export const hideAccountNumber = (accountNum: string) => {
     })
     .join('');
 };
+
+const tokenKey = 'ACCESS_TOKEN';
+
+export const getToken = () => {
+  return localStorage.getItem(tokenKey);
+};
+
+export const setToken = (token: string) => {
+  localStorage.setItem(tokenKey, token);
+};
+
+export const removeToken = () => {
+  localStorage.removeItem(tokenKey);
+};

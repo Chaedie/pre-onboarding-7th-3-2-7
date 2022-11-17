@@ -1,21 +1,22 @@
-import useFetchAccount from '../hooks/useFetchAccounts';
+import { getAccounts } from '../apis/accounts.service';
+import useFetch from '../hooks/useFetch';
 import {
   getAssetsColor,
   hideAccountNumber,
   toCommaNumber,
 } from '../utils/functions';
-import { BROKER, STATUS, TABLE_HEADS } from '../utils/varibales';
+import { BROKER, STATUS, ACCOUNTS_TABLE_HEADS } from '../utils/varibales';
 
 function Accounts() {
-  const { accounts, totalPageCount, setPage } = useFetchAccount();
-
+  const { state, totalPageCount, setPage } = useFetch(getAccounts);
+  const accounts = state;
   return (
     <div className="text-black-100">
       <h1>Accounts</h1>
       <table>
         <thead className="border overflow-scroll">
           <tr className="border">
-            {TABLE_HEADS.map(head => (
+            {ACCOUNTS_TABLE_HEADS.map(head => (
               <th key={head} className="border p-2">
                 {head}
               </th>

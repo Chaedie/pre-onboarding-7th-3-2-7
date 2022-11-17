@@ -1,6 +1,6 @@
-export const PAGINATION_LIMIT = 20;
+export const PAGINATION_LIMIT = 10;
 
-export const TABLE_HEADS = [
+export const ACCOUNTS_TABLE_HEADS = [
   '고객명',
   '브로커명',
   '계좌번호',
@@ -47,3 +47,16 @@ export const BROKER: Record<string, string> = {
   '292': 'LIG투자증권',
   '271': '토스증권',
 };
+
+export const USERS_TABLE_HEADS = [
+  '고객명',
+  '보유중인 계좌수',
+  '이메일 주소',
+  '주민등록상 성별코드',
+  '생년월일',
+  '휴대폰 번호',
+  '최근로그인',
+  '혜택 수신 동의 여부',
+  '활성호 여부',
+  '가입일',
+];

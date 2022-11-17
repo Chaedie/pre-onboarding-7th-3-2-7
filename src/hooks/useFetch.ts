@@ -1,29 +1,27 @@
 import { useEffect, useRef, useState } from 'react';
-import { getAccounts } from '../apis/http';
-import { Account } from '../models/account';
 import { PAGINATION_LIMIT } from '../utils/varibales';
 
-function useFetchAccount() {
-  const [accounts, setAccounts] = useState<Account[]>([]);
+function useFetch(apiFunction: any) {
+  const [state, setState] = useState([]);
   const [page, setPage] = useState(1);
   const totalPageCount = useRef(0);
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await getAccounts(page);
+      const res = await apiFunction(page);
       if (res?.headers['x-total-count']) {
         totalPageCount.current = ~~(
           parseInt(res.headers['x-total-count']) / PAGINATION_LIMIT
         );
       }
       if (res?.data) {
-        setAccounts(res.data);
+        setState(res.data);
       }
     };
     fetchData();
-  }, [page]);
+  }, [page, apiFunction]);
 
-  return { accounts, totalPageCount, setPage };
+  return { state, totalPageCount, setPage };
 }
 
-export default useFetchAccount;
+export default useFetch;

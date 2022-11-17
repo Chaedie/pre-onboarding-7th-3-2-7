@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import { ChangeEvent, FormEvent, useState } from 'react';
-import { postLogin, postSignUp } from '../apis/http';
+import { postLogin, postSignUp } from '../apis/auth.service';
+import { getToken } from '../utils/functions';
 
 function LoginForm() {
   const [inputs, setInputs] = useState({ email: '', password: '' });
@@ -11,14 +12,18 @@ function LoginForm() {
     setInputs({ ...inputs, [name]: value });
   };
 
-  const handleOnSubmitLogin = (e: FormEvent) => {
+  const handleOnSubmitLogin = async (e: FormEvent) => {
     e.preventDefault();
-    postLogin(inputs);
-    router.push('/accounts');
+    await postLogin(inputs);
+    if (getToken()) {
+      router.push('/accounts');
+    }
   };
-  const handleSignUp = () => {
-    postSignUp(inputs);
-    router.push('/accounts');
+  const handleSignUp = async () => {
+    await postSignUp(inputs);
+    if (getToken()) {
+      router.push('/accounts');
+    }
   };
 
   return (
